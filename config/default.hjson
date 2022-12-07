@@ -1,0 +1,11 @@
+{
+    url: https://geoservices.un.org/arcgis/rest/services/Hosted/UN_Geodata_Stylized/FeatureServer/
+    layers:{
+        bnda: 3
+        bndl: 0
+    }
+    recordcount:{
+        bnda: 246
+        bndl: 742
+    }
+}

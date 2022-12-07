@@ -1,0 +1,27 @@
+{
+  "name": "data",
+  "version": "1.0.0",
+  "description": "small scale data conversion from esri server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ubukawa/cartotile.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ubukawa/cartotile/issues"
+  },
+  "homepage": "https://github.com/ubukawa/cartotile#readme",
+  "dependencies": {
+    "config": "^3.3.8",
+    "hjson": "^3.2.2",
+    "https": "^1.0.0",
+    "node-fetch": "^2.6.7",
+    "request": "^2.88.2"
+  }
+}

@@ -20,8 +20,6 @@
   "dependencies": {
     "config": "^3.3.8",
     "hjson": "^3.2.2",
-    "https": "^1.0.0",
-    "node-fetch": "^2.6.7",
-    "request": "^2.88.2"
+    "node-fetch": "^2.6.7"
   }
 }

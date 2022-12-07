@@ -1,12 +1,17 @@
+//modules
 const fetch = require('node-fetch')
 const config = require('config')
-const featureServer = config.get('url')
 
+//parameters
+const featureServer = config.get('url')
+const layers = config.get('layers')
+const layerId = config.get('layerId')
+const layerRecord = config.get('layerRecord')
 var data = []
 
-async function get_request(url){
+//actual code
+async function get_feature(url,layerName3){
     const res = await fetch(url)
-//    const esri = await res
     const esri = await res.json()
     let f = new Object()
     f.type = 'feature'
@@ -26,41 +31,31 @@ async function get_request(url){
         f.geometory.coordinates = esri.feature.geometry.points[0]
     }
     f.tippecanoe = {}
-    f.tippecanoe.layer = 'layer123' //will change later
+    f.tippecanoe.layer = layerName3 
     f.tippecanoe.maxzoom = 2
     f.tippecanoe.minzoom = 0
     delete f.properties.globalid  //delete unnnecesary attribution
     delete f.properties.globalid_1   //delete unnnecesary attribution
     delete f.properties.SHAPE__Length   //delete unnnecesary attribution
     data.push(f)
-    console.log(data)
+//    console.log(data)
 }
 
 
+async function getlayer(layer,count,layerName2){
+    for (var i = 1; i < count + 1; i ++){
+        var featureUrl = featureServer + layer + '/' + i + '?f=pjson'
+        await get_feature(featureUrl,layerName2)
+    }
+}
 
-function getlayer(layer){
-    return new Promise(function (resolve) {
-        for (var i = 1; i < 10; i ++){
-            var featureUrl = featureServer + layer + '/' + i + '?f=pjson'
-            get_request(featureUrl)
-        }
-        resolve(data)
-    }).then((out)=>{
-        console.log(out)
+for (let layer in layers){
+    let num = layerId[layers[layer]]
+    let record = layerRecord[layers[layer]]
+    let layerName1 = layers[layer]
+    getlayer(num,record,layerName1).then(()=>{
+        console.log(JSON.parse(data))
     })
 }
-
-getlayer(0)
-
-//console.log(jsondata)
-
-//for (var i = 1; i < 6; i ++){
-//    var featureUrl = featureServer + '0' + '/' + i + '?f=pjson'
-//    get_request(featureUrl)
-//}
-
-//console.log(await Promise.all(data))
-
-
 
 

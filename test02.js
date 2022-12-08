@@ -71,7 +71,7 @@ async function main(){
     console.log('Starting the work!!!!!!')
     console.log(Date())
     console.log('----->')
-    for ( i in [0,3]){
+    for ( var i in layers){
         await getlayer(layerId[layers[i]],layerRecord[layers[i]],layers[i])
     }
 }

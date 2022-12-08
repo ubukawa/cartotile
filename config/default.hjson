@@ -1,6 +1,6 @@
 {
     url: https://geoservices.un.org/arcgis/rest/services/Hosted/UN_Geodata_Stylized/FeatureServer/
-    outputText: output002.json
+    outputText: geojsonsequence.json
     layers:[
         bnda
         bndl

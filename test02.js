@@ -46,15 +46,14 @@ async function get_feature(url,layerName3){
 }
 
 async function getlayer(layer,count,layerName2){
-    console.log('Starting the work!!!!!!')
-    console.log(Date())
-    console.log('----->')
     for (var i = 1; i < count + 1; i ++){
         var featureUrl = featureServer + layer + '/' + i + '?f=pjson'
         await get_feature(featureUrl,layerName2)
     }
+    console.log(`--- ${layerName2} finished on ${Date()}`)
 }
 
+/*
 //console.log(layerId[layers[0]])  //like "0" or "3"
 //console.log(layerRecord[layers[0]]) //like "246" or "742"
 //console.log(layers[0]) //like "bnda" or "bndl"
@@ -66,7 +65,22 @@ getlayer(layerId[layers[1]],30,layers[1]).then(()=>{
       console.log('end!!! Bye-bye')
       console.log(Date())
 })
+*/
 
+async function main(){
+    console.log('Starting the work!!!!!!')
+    console.log(Date())
+    console.log('----->')
+    for ( i in [0,3]){
+        await getlayer(layerId[layers[i]],layerRecord[layers[i]],layers[i])
+    }
+}
+
+main().then(()=>{
+    stream.end()
+    console.log(`end!!! ${Date()}`)
+    console.log('Good bye (^o^)/')
+})
 
 /*
 async function main(){

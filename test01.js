@@ -59,7 +59,7 @@ async function getlayer(layer,count,layerName2){
 //console.log(layerRecord[layers[0]]) //like "246" or "742"
 //console.log(layers[0]) //like "bnda" or "bndl"
 //getlayer(layerId[layers[0]],layerRecord[layers[0]],layers[0]).then(()=>{
-getlayer(layerId[layers[0]],10,layers[0]).then(()=>{
+getlayer(layerId[layers[1]],30,layers[1]).then(()=>{
 //    console.log(JSON.parse(data[0]))
 //    console.log(data[0])
       stream.end()

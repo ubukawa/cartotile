@@ -24,14 +24,32 @@ async function get_feature(url,layerName3){
     f.tippecanoe = {}
     f.properties = esri.feature.attributes
     if(esri.feature.geometry.rings != undefined){
-        f.geometry.type = 'Polygon'
-        f.geometry.coordinates = esri.feature.geometry.rings   
+        if( esri.feature.geometry.rings.length != 1){
+            f.geometry.type = 'MultiPolygon'
+            for (let m in esri.feature.geometry.rings){
+                f.geometry.coordinates[m] = []
+                f.geometry.coordinates[m][0] = esri.feature.geometry.rings[m] //I am not quite sure
+            }
+        } else {
+            f.geometry.type = 'Polygon'
+            f.geometry.coordinates = esri.feature.geometry.rings
+        }       
     } else if (esri.feature.geometry.paths != undefined) {
-        f.geometry.type = 'LineString'
-        f.geometry.coordinates =esri.feature.geometry.paths[0]
+        if(esri.feature.geometry.paths.length != 1){
+            f.geometry.type = 'MultiLineString'
+            f.geometry.coordinates =esri.feature.geometry.paths
+        } else {
+            f.geometry.type = 'LineString'
+            f.geometry.coordinates =esri.feature.geometry.paths[0]
+        } 
     } else {
-        f.geometry.type = 'Point'
-        f.geometry.coordinates = esri.feature.geometry.points[0]
+        if(esri.feature.geometry.points.length != 1) { //need to check this esry type name
+            f.geometry.type = 'MultiPoint'
+            f.geometry.coordinates = esri.feature.geometry.points
+        } else {
+            f.geometry.type = 'Point'
+            f.geometry.coordinates = esri.feature.geometry.points[0]
+        }
     }
     f.tippecanoe = {}
     f.tippecanoe.layer = layerName3 
@@ -56,14 +74,32 @@ async function get_feature_no_comma(url,layerName3){
     f.tippecanoe = {}
     f.properties = esri.feature.attributes
     if(esri.feature.geometry.rings != undefined){
-        f.geometry.type = 'Polygon'
-        f.geometry.coordinates = esri.feature.geometry.rings   
+        if( esri.feature.geometry.rings.length != 1){
+            f.geometry.type = 'MultiPolygon'
+            for (let m in esri.feature.geometry.rings){
+                f.geometry.coordinates[m] = []
+                f.geometry.coordinates[m][0] = esri.feature.geometry.rings[m] //I am not quite sure
+            }
+        } else {
+            f.geometry.type = 'Polygon'
+            f.geometry.coordinates = esri.feature.geometry.rings
+        }       
     } else if (esri.feature.geometry.paths != undefined) {
-        f.geometry.type = 'LineString'
-        f.geometry.coordinates =esri.feature.geometry.paths[0]
+        if(esri.feature.geometry.paths.length != 1){
+            f.geometry.type = 'MultiLineString'
+            f.geometry.coordinates =esri.feature.geometry.paths
+        } else {
+            f.geometry.type = 'LineString'
+            f.geometry.coordinates =esri.feature.geometry.paths[0]
+        } 
     } else {
-        f.geometry.type = 'Point'
-        f.geometry.coordinates = esri.feature.geometry.points[0]
+        if(esri.feature.geometry.points.length != 1) { //need to check this esry type name
+            f.geometry.type = 'MultiPoint'
+            f.geometry.coordinates = esri.feature.geometry.points
+        } else {
+            f.geometry.type = 'Point'
+            f.geometry.coordinates = esri.feature.geometry.points[0]
+        }
     }
     f.tippecanoe = {}
     f.tippecanoe.layer = layerName3 

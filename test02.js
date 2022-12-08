@@ -25,7 +25,7 @@ async function get_feature(url,layerName3){
     f.properties = esri.feature.attributes
     if(esri.feature.geometry.rings != undefined){
         f.geometry.type = 'Polygon'
-        f.geometry.coordinates = esri.feature.geometry.rings[0]    
+        f.geometry.coordinates = esri.feature.geometry.rings  
     } else if (esri.feature.geometry.paths != undefined) {
         f.geometry.type = 'LineString'
         f.geometry.coordinates =esri.feature.geometry.paths[0]
